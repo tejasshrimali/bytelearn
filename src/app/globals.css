@@ -10,10 +10,11 @@
 
 body {
   margin: 5px;
+  padding: 5px;
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-exodus);
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .app_header {
@@ -28,5 +29,8 @@ body {
 .app_textarea {
   background-color: var(--ternary);
   color: var(--foreground);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
+}
+.gen_imp_list {
+  background-color: var(--ternary);
 }

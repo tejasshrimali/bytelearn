@@ -4,7 +4,8 @@ import Header from "./components/Header";
 import { generateQuiz } from "./actions/generateQuiz";
 import { db } from "./lib/firebase";
 import { useAuth } from "./hooks/useAuth";
-import { collection, doc, setDoc ,addDoc } from "firebase/firestore";
+import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+import Link from "next/link";
 
 // import Textarea from "./components/Textarea";
 
@@ -22,8 +23,6 @@ export default function Home() {
     setData(JSON.parse(cleanedJson));
     console.log("Data:", data);
     if (user) {
-      
-
       const userQuizzesRef = collection(db, "users", user.uid, "quizzes");
 
       await addDoc(userQuizzesRef, {
@@ -56,15 +55,27 @@ export default function Home() {
         className="grid md:grid-cols-5 md:grid-rows-1 col-span-3 row-span-1
      md:gap-10 md:row-span-2 grid-cols-3 "
       >
-        <button
-          className="col-span-3 row-start-8 row-span-1  bg-blue-500 text-white rounded-lg
+        {text.length > 150 ? (
+          <Link
+            href={"/dashboard"}
+            className="col-span-3 row-start-8 row-span-1  bg-blue-500 text-white rounded-lg
       shadow-md hover:bg-blue-600 transition duration-200 flex items-center justify-center text-xl
       h-12 font-semibold
      md:row-span-2 md:p-0 md:h-16 "
-          onClick={handleGenerate}
-        >
-          Generate Quiz
-        </button>
+          >
+            <button onClick={handleGenerate}>Generate Quiz</button>
+          </Link>
+        ) : (
+          <button
+            onClick={handleGenerate}
+            className="col-span-3 row-start-8 row-span-1  bg-blue-950 text-white rounded-lg
+          shadow-md transition duration-200 flex items-center justify-center text-xl
+          h-12 font-semibold
+         md:row-span-2 md:p-0 md:h-16 "
+          >
+            Generate Quiz
+          </button>
+        )}
       </div>
     </div>
   );
