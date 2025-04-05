@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #202020;
+  --primary: #1590dd;
+  --ternary: #2d2d2d;
+  --foreground: #ffffff;
+  --sample: rgba(164, 0, 241, 0.931);
 }
 
 body {
-  background: var(--background);
+  margin: 5px;
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-exodus);
+  overflow: hidden;
+}
+
+.app_header {
+  background-color: var(--ternary);
+  color: var(--foreground);
+}
+
+.app_register {
+  background-color: var(--sample);
+}
+
+.app_textarea {
+  background-color: var(--ternary);
+  color: var(--foreground);
+  font-family: 'Times New Roman', Times, serif;
 }
