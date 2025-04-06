@@ -10,7 +10,7 @@ const exodus = Exo_2({
 
 export const metadata = {
   title: "ByteLearn",
-  description: "AI-Powered Learning Platform",
+  description: "AI-Powered Learning assistant",
 };
 
 export default function RootLayout({ children }) {
