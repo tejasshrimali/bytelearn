@@ -103,7 +103,7 @@ export default function ContentPage() {
             {/* This takes user to revison page where flashcards are there*/}
             <div
               className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full
-       flex flex-col items-center app_header p-5 container  rounded-md"
+              flex flex-col items-center app_header p-5 container  rounded-md"
             >
               <button
                 onClick={() => setMode(true)}

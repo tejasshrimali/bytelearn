@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ByteLearn : AI-Powered learning assistant
+🚀 Overview
+ByteLearn is a web application that helps users quickly generate important points and flashcards from any given topic. The tool enhances learning and revision by automatically extracting key information and presenting it in an interactive way.
 
-## Getting Started
+🎯 Features
+✅ Topic-Based Learning – Users can paste a topic, and the AI extracts important points for them.
+✅ Dashboard for Previous Topics – Users can access previously generated topics along with new ones.
+✅ Important Points Extraction – The AI highlights key points from the topic.
+✅ Interactive Flashcards – Users can revise concepts using AI-generated flashcards.
+✅ Seamless Navigation – Click on any saved topic to revisit its important points and flashcards.
 
-First, run the development server:
+🔮 Future Enhancements
+🔜 File & Image Upload – Users will be able to upload PDFs or images, and the AI will extract text.
+🔜 Advanced AI Summarization – Smarter AI models for better summarization and flashcard generation.
+🔜 Customizable Flashcards – Users can edit, delete, or add their own important points.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌍 How to Use
+1️⃣ Open the web app (hosted on Vercel).
+2️⃣ Paste a topic into the input box.
+3️⃣ The AI extracts key points and generates flashcards.
+4️⃣ View all your past topics in the dashboard.
+5️⃣ Click on a topic to see its key points.
+6️⃣ Use interactive flashcards to revise effectively.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🛠️ Tech Stack
+Frontend: Next.js, Tailwind CSS
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Backend & Database: Firebase (Firestore)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+AI Processing: Gemini API
