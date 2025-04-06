@@ -1,75 +1,84 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "../hooks/useAuth";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import Link from "next/link";
 
 export default function QuizGrid() {
   const { user } = useAuth();
   const [datalist, setData] = useState([]);
   const [imps, setImps] = useState([]);
 
+  // ✅ Return loading state instead of nothing
+
+  const fetchData = useCallback(async () => {
+    if (!user) return;
+    const userQuizzesRef = collection(db, "users", user.uid, "quizzes");
+    try {
+      const snapshot = await getDocs(userQuizzesRef);
+      const quiznimp = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        title: doc.data()?.data?.title || "Untitled",
+        imps: doc.data()?.data?.imps || [], // Ensure imps is always an array
+      }));
+
+      const allImps = quiznimp.flatMap((doc) => doc.imps);
+
+      setData(quiznimp);
+      setImps(allImps);
+
+      localStorage.setItem(`quizzes_${user.uid}`, JSON.stringify({ imps: allImps, datalist: quiznimp }));
+    } catch (error) {
+      console.error("Error fetching initial data:", error);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   useEffect(() => {
     if (!user) return;
+    const userQuizzesRef = collection(db, "users", user.uid, "quizzes");
+    //ordering the documents so that latest generated will be on to[]
+    const q = query(userQuizzesRef, orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(userQuizzesRef, (snapshot) => {
+      const quiznimp = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        title: doc.data()?.data?.title || "Untitled",
+        imps: doc.data()?.data?.imps || [],
+      }));
 
-    const fetchQuiz = async () => {
-      const userQuizzesRef = collection(db, "users", user.uid, "quizzes");
+      const allImps = quiznimp.flatMap((doc) => doc.imps);
 
-      // 1️⃣ Fetch the current number of documents in Firestore
-      const snapShot = await getDocs(userQuizzesRef);
-      const firestoreSize = snapShot.size; // Number of quizzes in Firestore
-
-      // 2️⃣ Get cached data from localStorage
-      const cachedData = localStorage.getItem(`quizzes_${user.uid}`);
-      if (cachedData) {
-        const parsedData = JSON.parse(cachedData);
-        const localSize = parsedData.datalist.length; // Number of cached quizzes
-
-        // 3️⃣ Compare sizes: Fetch only if Firestore has more data
-        if (firestoreSize <= localSize) {
-          console.log("Using cached quiz data");
-          setImps(parsedData.imps);
-          setData(parsedData.datalist);
-          return;
-        }
-      }
-
-      // 4️⃣ Fetch from Firestore if no cache or new data is available
-      console.log("Fetching updated quiz data from Firestore...");
-      let allImps = [];
-      const quiznimp = snapShot.docs.map((doc) => {
-        const data = doc.data();
-        if (data?.data?.imps) {
-          allImps = [...allImps, ...data.data.imps];
-        }
-        return { id: doc.id, ...data };
-      });
-
-      // 5️⃣ Update State and Cache New Data
-      setImps(allImps);
       setData(quiznimp);
-      localStorage.setItem(`quizzes_${user.uid}`, JSON.stringify({ imps: allImps, datalist: quiznimp }));
-    };
+      setImps(allImps);
 
-    fetchQuiz();
+      localStorage.setItem(`quizzes_${user.uid}`, JSON.stringify({ imps: allImps, datalist: quiznimp }));
+    });
+
+    return () => unsubscribe();
   }, [user]);
-  const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-yellow-500", "bg-purple-500"];
+
+  console.log("datalist", datalist);
+  // const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-yellow-500", "bg-purple-500"];
 
   return (
-    <div className="flex flex-col w-full text-white gap-2">
-      {/* <h1 className="text-2xl font-bold">Important points :</h1>
-      {imps.map((item, index) => (
-        <div
-          key={index}
-          className="min-h-fit h-20 p-3 rounded-md gen_imp_list flex flex-row items-center justify-center gap-2"
-        >
-          <div className={`max-w-2.5 h-full w-5 ${colors[index % colors.length]}`}></div>
-          <h2 className="text-lg font-normal h-full">{item}</h2>
-        </div>
-      ))} */}
+    <div className="grid grid-cols-1 md:grid-cols-2  col-span-8 container  text-white gap-2 h-fit overflow-hidden items-center">
+      {/* just listing thte title of the generated content */}
       {datalist.map((item, index) => (
-        <div key={index} className="">{"No Title"}</div>
+        <Link
+          href={`/quiz/${item.id}`}
+          key={index}
+          className="text-semibold text-2xl gen_imp_list gr
+          rounded-md flex items-center  min-h-20 p-3 w-full lg:h-fit"
+        >
+          <div>
+            {index + 1}. {item.title}
+          </div>
+        </Link>
       ))}
     </div>
   );
