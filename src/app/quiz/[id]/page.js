@@ -84,15 +84,15 @@ export default function ContentPage() {
       ) : (
         <>
           <div className="flex flex-col w-full text-white gap-2 pb-16 container  ">
-            <div
-              className="w-full h-fit p-5 rounded-md grid grid-col-2 grid-row-1 items-center
-      app_header text-center font-extrabold text-2xl col-span-1 justify-items-start"
-            >
-              <Link href="/dashboard">
-                <LayoutGrid />
-              </Link>
-              <p className="col-span-1 col-start-2">Happy Learning</p>
-            </div>
+          <div
+            className="fixed top-0 z-10  h-fit p-5 rounded-md grid grid-col-2 grid-row-1 items-center
+      app_header text-center font-extrabold text-2xl col-span-1 justify-items-start container w-full"
+          >
+            <Link href="/dashboard">
+              <LayoutGrid />
+            </Link>
+            <p className="col-span-1 col-start-2">Happy Learning</p>
+          </div>
             <h1 className="text-2xl font-bold">Important Points :</h1>
 
             {data?.data?.imps.map((item, index) => (
