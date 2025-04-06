@@ -98,7 +98,7 @@ export default function ContentPage() {
             {data?.data?.imps.map((item, index) => (
               <div key={index} className="min-h-fit h-20 p-3 rounded-md gen_imp_list flex flex-row items-center gap-2">
                 <div className={`max-w-2.5 h-full w-5 ${colors[index % colors.length]} justify-start`}></div>
-                <h2 className="text-lg font-normal h-full">{item}</h2>
+                <h2 className="text-lg font-normal h-fit p-1">{item}</h2>
               </div>
             ))}
 
