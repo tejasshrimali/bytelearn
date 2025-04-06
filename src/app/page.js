@@ -25,7 +25,7 @@ export default function Home() {
     const result = await generateQuiz(text);
     const cleanedJson = result.replace(/^```json\s*/, "").replace(/\s*```$/, "");
     console.log(cleanedJson);
-    setText("");
+    //setText("");
 
     setData(JSON.parse(cleanedJson));
 
