@@ -54,13 +54,13 @@ export default function Home() {
       ></textarea>
       <div
         className="grid md:grid-cols-5 md:grid-rows-1 col-span-3 row-span-1
-        md:gap-10 md:row-span-2 grid-cols-3 grid-rows-2 row-start-8 gap-10"
+        md:gap-10 md:row-span-2 grid-cols-3 grid-rows-2 row-start-8 gap-12"
       >
         {/* we check the length of the textare to make sure we have engouh content to generate points and quiz */}
         {text.length > 150 ? (
           <Link
             href={"/dashboard"}
-            className="col-span-3 row-start-8 row-span-1  bg-blue-500 text-white rounded-lg
+            className="col-span-3 row-span-1  bg-blue-500 text-white rounded-lg
             shadow-md hover:bg-blue-600 transition duration-200 flex items-center justify-center text-xl
             h-12 font-semibold
             md:row-span-2 md:p-0 md:h-16 "
