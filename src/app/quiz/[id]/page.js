@@ -115,6 +115,7 @@ export default function ContentPage() {
                 Take Revision
               </button>
             </div>
+            
           </div>
         </>
       )}

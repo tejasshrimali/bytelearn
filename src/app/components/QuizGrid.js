@@ -82,6 +82,7 @@ export default function QuizGrid() {
               </div>
             </Link>
           ))}
+          <p className="p-3 bg-gray-800 rounded-md items-center h-full ">New generation may take some second(s) to show up*</p>
         </div>
       ) : (
         <p>Loading....</p>
