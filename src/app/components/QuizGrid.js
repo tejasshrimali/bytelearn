@@ -66,20 +66,26 @@ export default function QuizGrid() {
   // const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-yellow-500", "bg-purple-500"];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2  col-span-8 container  text-white gap-2 h-fit overflow-hidden items-center">
-      {/* just listing thte title of the generated content */}
-      {datalist.map((item, index) => (
-        <Link
-          href={`/quiz/${item.id}`}
-          key={index}
-          className="text-semibold text-2xl gen_imp_list gr
+    <>
+      {datalist.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2  col-span-8 container  text-white gap-2 h-fit overflow-hidden items-center">
+          {/* just listing thte title of the generated content */}
+          {datalist.map((item, index) => (
+            <Link
+              href={`/quiz/${item.id}`}
+              key={index}
+              className="text-semibold text-2xl gen_imp_list gr
           rounded-md flex items-center  min-h-20 p-3 w-full lg:h-fit"
-        >
-          <div>
-            {index + 1}. {item.title}
-          </div>
-        </Link>
-      ))}
-    </div>
+            >
+              <div>
+                {index + 1}. {item.title}
+              </div>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p>Loading....</p>
+      )}
+    </>
   );
 }

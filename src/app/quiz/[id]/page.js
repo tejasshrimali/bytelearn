@@ -43,6 +43,8 @@ export default function ContentPage() {
   if (loading) return <div>Loading...</div>;
   if (!data) return <div>Quiz not found</div>;
 
+  
+
   return (
     <>
       {/* this lists imps extracted from the para*/}

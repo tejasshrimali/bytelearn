@@ -1,9 +1,22 @@
+"use client";
 import { PenBoxIcon } from "lucide-react";
 import Header from "../components/Header";
 import QuizGrid from "../components/QuizGrid";
 import Link from "next/link";
+import { useAuth } from "../hooks/useAuth";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function DashBoard() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && user === null) {
+      router.push("/"); // Redirect only if Firebase is done checking and user is null
+    }
+  }, [user, router, loading]);
+
   return (
     <div className="grid grid-col-8 grid-rows-8 h-screen w-full container">
       <div

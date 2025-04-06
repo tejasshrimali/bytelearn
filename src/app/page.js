@@ -56,7 +56,8 @@ export default function Home() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Paste your paragraph here , our tool will help you extract important 
-        points and generate quiz! Make sure the paragraph is more than 150 characters"
+        points and generate quiz! Make sure the paragraph is more than 150 characters.
+        Also login / Register is required to store topics and show the dashboard"
         className="rounded-lg app_textarea p-5
       col-span-3 row-span-6 row-start-2 resize-none md:row-span-8 outline-none"
       ></textarea>
