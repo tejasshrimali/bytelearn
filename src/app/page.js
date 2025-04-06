@@ -7,11 +7,19 @@ import { useAuth } from "./hooks/useAuth";
 import { collection, doc, setDoc, addDoc } from "firebase/firestore";
 import Link from "next/link";
 
+import { signInWithGoogle, logout } from "./lib/auth";
+
 export default function Home() {
   const [text, setText] = useState("");
   const [data, setData] = useState(null);
   const { user, loading } = useAuth();
-
+  const handelAuth = async (action) => {
+    if (action === "login") {
+      await signInWithGoogle();
+    } else {
+      await logout();
+    }
+  };
   const handleGenerate = async () => {
     if (!text.trim()) return;
     const result = await generateQuiz(text);
@@ -52,44 +60,56 @@ export default function Home() {
         className="rounded-lg app_textarea p-5
       col-span-3 row-span-6 row-start-2 resize-none md:row-span-8 outline-none"
       ></textarea>
-      <div
-        className="grid md:grid-cols-5 md:grid-rows-1 col-span-3 row-span-1
+
+      {user ? (
+        <div
+          className="grid md:grid-cols-5 md:grid-rows-1 col-span-3 row-span-1
         md:gap-10 md:row-span-2 grid-cols-3 grid-rows-2 row-start-8 gap-12"
-      >
-        {/* we check the length of the textare to make sure we have engouh content to generate points and quiz */}
-        {text.length > 150 ? (
-          <Link
-            href={"/dashboard"}
-            className="col-span-3 row-span-1  bg-blue-500 text-white rounded-lg
+        >
+          {/* we check the length of the textare to make sure we have engouh content to generate points and quiz */}
+          {text.length > 150 ? (
+            <Link
+              href={"/dashboard"}
+              className="col-span-3 row-span-1  bg-blue-500 text-white rounded-lg
             shadow-md hover:bg-blue-600 transition duration-200 flex items-center justify-center text-xl
             h-12 font-semibold
             md:row-span-2 md:p-0 md:h-16 "
-          >
-            <button onClick={handleGenerate}>Generate Quiz </button>
-          </Link>
-        ) : (
-          <button
-            onClick={handleGenerate}
-            className="col-span-3  row-span-1  bg-blue-950 text-white rounded-lg
+            >
+              <button onClick={handleGenerate}>Generate Quiz </button>
+            </Link>
+          ) : (
+            <button
+              className="col-span-3  row-span-1  bg-blue-950 text-white rounded-lg
             shadow-md transition duration-200 flex items-center justify-center text-xl
             h-12 font-semibold
             md:row-span-2 md:p-0 md:h-16 "
-          >
-            Generate Quiz ({text.length}/150)
-          </button>
-        )}
+            >
+              Generate Quiz ({text.length}/150)
+            </button>
+          )}
 
-        {/* users can check their dashboard from here ,it cotains previous notes */}
-        <Link
-          href={"/dashboard"}
-          className="col-span-3  row-span-1  bg-blue-500 text-white rounded-lg
+          {/* users can check their dashboard from here ,it cotains previous notes */}
+          <Link
+            href={"/dashboard"}
+            className="col-span-3  row-span-1  bg-blue-500 text-white rounded-lg
            shadow-md hover:bg-blue-600 transition duration-200 flex items-center justify-center text-xl
            h-12 font-semibold
            md:row-span-2 md:p-0 md:h-16 "
+          >
+            <button>Check Dashboard</button>
+          </Link>
+        </div>
+      ) : (
+        <button
+          onClick={() => handelAuth("login")}
+          className="col-span-3  row-span-1  bg-blue-950 text-white rounded-lg
+       shadow-md transition duration-200 flex items-center justify-center text-xl
+       h-12 font-semibold
+       md:row-span-2 md:p-0 md:h-16 "
         >
-          <button>Check Dashboard</button>
-        </Link>
-      </div>
+          Sign in with Google
+        </button>
+      )}
     </div>
   );
 }
