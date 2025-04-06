@@ -49,15 +49,15 @@ export default function ContentPage() {
       {rev_mode ? (
         <div className="flex flex-col w-full text-white container items-center pb-20 justify-center ">
           <div
-            className="w-full h-fit p-5 rounded-md grid grid-col-2 grid-row-1 items-center
-      app_header text-center font-extrabold text-2xl col-span-1 justify-items-start"
+            className="fixed top-0 z-10  h-fit p-5 rounded-md grid grid-col-2 grid-row-1 items-center
+      app_header text-center font-extrabold text-2xl col-span-1 justify-items-start container w-full"
           >
             <Link href="/dashboard">
               <LayoutGrid />
             </Link>
             <p className="col-span-1 col-start-2">Happy Learning</p>
           </div>
-          <div className="relative grid grid-col-3 grid-rows-3">
+          <div className="relative grid grid-col-3 grid-rows-3 mt-20">
             {data?.data?.qna.map((item, index) => (
               <Flashcard
                 question={item.question}
@@ -69,7 +69,7 @@ export default function ContentPage() {
           </div>
           <div
             className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full
-       flex flex-col items-center bg-gray-950 p-5 container rounded-md"
+       flex flex-col items-center app_header p-5 container rounded-md"
           >
             <button
               onClick={() => setMode(false)}
@@ -103,7 +103,7 @@ export default function ContentPage() {
             {/* This takes user to revison page where flashcards are there*/}
             <div
               className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full
-       flex flex-col items-center bg-gray-950 p-5 container  rounded-md"
+       flex flex-col items-center app_header p-5 container  rounded-md"
             >
               <button
                 onClick={() => setMode(true)}

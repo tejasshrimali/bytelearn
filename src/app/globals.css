@@ -20,6 +20,7 @@ body {
 .app_header {
   background-color: var(--ternary);
   color: var(--foreground);
+  box-shadow: 0 0 10px rgb(60, 60, 60);
 }
 
 .app_register {
