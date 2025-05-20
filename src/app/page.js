@@ -71,11 +71,11 @@ export default function Home() {
         > */}
         <button
           onClick={handleGenerate}
-          className="bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200 flex items-center justify-center text-xl h-12 font-semibold md:row-span-2 md:p-0 md:h-16"
+          className="bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200 flex items-center justify-center p-3 h-12 font-semibold md:row-span-2 md:p-0 md:h-16"
         >
           Generate Suggestions
         </button>
-       <div dangerouslySetInnerHTML={{ __html: data }} className="rounded-lg app_textarea w-full  p-5 mt-5"></div>
+        <div dangerouslySetInnerHTML={{ __html: data }} className="rounded-lg app_textarea w-full  p-5 mt-5"></div>
         {/* </Link> */}
       </div>
     </div>
