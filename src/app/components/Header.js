@@ -7,8 +7,8 @@ export default function Header() {
       className="grid grid-cols-4 grid-rows-2 row-start-1 col-span-3 row-span-1  
        rounded-lg app_header items-center  md:row-span-2 md:h-full md:row-start-2 p-4 gap-8"
     >
-      <h1 className="font-extrabold text-2xl col-span-3 row-start-1">ByteLearn</h1>
-      <p className="font-light text-sm col-span-3 row-start-2 text-gray-400">AI-powered learning assistant</p>
+      <h1 className="font-extrabold text-2xl col-span-3 row-start-1">ResumeAI</h1>
+      <p className="font-light text-sm col-span-3 row-start-2 text-gray-400">AI-powered resume enhancer</p>
 
       <AuthButton />
     </div>
