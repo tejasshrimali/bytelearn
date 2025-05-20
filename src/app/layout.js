@@ -9,8 +9,8 @@ const exodus = Exo_2({
 });
 
 export const metadata = {
-  title: "ByteLearn",
-  description: "AI-Powered Learning assistant",
+  title:"ResumeAI",
+  description: "AI-Powered resume enhancer",
 };
 
 export default function RootLayout({ children }) {
