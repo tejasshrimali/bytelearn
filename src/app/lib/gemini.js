@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 const GEMINI_API_KEY = process.env.NEXT_PUBLIC_FIREBASE_geminiAPI_Key;
 
-const ai = new GoogleGenAI({ apiKey: "AIzaSyAdK4osW5WLVyn7WgafjXmCP8wNqua0ILs" });
+const ai = new GoogleGenAI({ apiKey: ""});
 const para = `Soul AI is a pioneering company founded by IIT Bombay and IIM Ahmedabad alumni, with a strong founding team from IITs, NITs, and BITS. We specialize in delivering high-quality human-curated data, AI-first scaled operations services, and more. Based in Hyderabad, we are a young, fast-moving team on a mission to build AI for Good, driving innovation and positive societal impact.
 
 
