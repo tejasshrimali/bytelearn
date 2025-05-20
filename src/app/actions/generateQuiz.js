@@ -8,7 +8,7 @@ export async function generateQuiz(para) {
     model: "gemini-2.0-flash-001",
     contents: `You are a job description analyzer, your work is to extract the skills and knowledge 
     needed for the job and help the candidate improve his resume by providing him a list of points that will be
-     helpful for him to get the job.you give the output in html OrderedList and unorderList format,Dont output anything else that the points.
+     helpful for him to get the job.you give the output in html OrderedList and unorderList format and use html break tag after each Order list or unorder list tag for better reading,Dont output anything else that the points.
      Here is a job description: ${para}`,
   });
   return response.text;
